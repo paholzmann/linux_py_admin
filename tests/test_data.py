@@ -5,6 +5,8 @@ from src.data import GenerateUserData, FileHandler
 Unit tests
 Integration tests
 Exception tests
+
+python -m pytest
 """
 class TestGenerateUserData:
     @classmethod
