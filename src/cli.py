@@ -1,4 +1,5 @@
 from .data import GenerateUserData, FileHandler
+from .users import Users
 from .logger import Logger
 import argparse
 import json
@@ -13,6 +14,7 @@ class CLI:
         """
         self.generate_user_data = GenerateUserData()
         self.file_handler = FileHandler()
+        self.users = Users()
         self.logger = Logger(name="Test", log_file="app.log").logger
         self.parser = argparse.ArgumentParser(description="Main parser")
         self.subparser = self.parser.add_subparsers(dest="command")
@@ -51,6 +53,24 @@ class CLI:
             help="Save output as CSV"
         )
 
+    def setup_users_parser(self):
+        """
+        
+        """
+        parser = self.subparser.add_parser(
+            "manage-users",
+            help="Manage user data"
+        )
+        parser.add_argument(
+            "action",
+            choices=["add-users", "remove-users"],
+            help="Action to perform: add or delete users"
+        )
+        parser.add_argument(
+            "--input-path",
+            help="Input file path"
+        )
+
     def run_commands(self):
         """
         Docstring for run_commands
@@ -64,3 +84,8 @@ class CLI:
             if args.output_path:
                 self.file_handler.convert_to_file(data=data, filepath=args.output_path, to_json=args.json, to_csv=args.csv)
                 self.logger.info(f"{'JSON' if args.json else ''} {'CSV' if args.csv else ''} file(s) saved in {args.output_path}")
+        elif args.command == "manage-users":
+            if args.action == "add":
+                self.users.add_users(args.input_path)
+            elif args.action == "delete":
+                self.users.delete_users(args.input_path)

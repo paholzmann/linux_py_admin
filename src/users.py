@@ -1,5 +1,6 @@
 import subprocess
 import pandas as pd
+from .logger import Logger
 
 class Users:
     def __init__(self):
@@ -58,6 +59,7 @@ class Users:
                 subprocess.run(
                     ["sudo", "deluser", "--remove-home", username]
                 )
+
             except subprocess.CalledProcessError as error:
                 print(f"Error while deleting user {username}: {error}")
 
