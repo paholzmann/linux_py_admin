@@ -31,7 +31,7 @@ class Users:
         
             try:
                 subprocess.run(
-                    ["sudo", "useradd", "-m", "-c", f"{first_name} {last_name}, {email}", "-g", department, username],
+                    ["sudo", "useradd", "-m", "-c", f"{first_name} {last_name}, {email}", username],
                     check=True
                 )
                 subprocess.run(
