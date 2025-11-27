@@ -1,4 +1,5 @@
 from .data import GenerateUserData, FileHandler
+from .logger import Logger
 import argparse
 import json
 
@@ -12,6 +13,7 @@ class CLI:
         """
         self.generate_user_data = GenerateUserData()
         self.file_handler = FileHandler()
+        self.logger = Logger(name="Test", log_file="app.log").logger
         self.parser = argparse.ArgumentParser(description="Main parser")
         self.subparser = self.parser.add_subparsers(dest="command")
         self.setup_generate_user_data_parser()
@@ -58,6 +60,7 @@ class CLI:
         args = self.parser.parse_args()
         if args.command == "generate-users":
             data = self.generate_user_data.generate_users(args.n)
-            # print(data)
+            self.logger.info(f"{args.n} users generated")
             if args.output_path:
                 self.file_handler.convert_to_file(data=data, filepath=args.output_path, to_json=args.json, to_csv=args.csv)
+                self.logger.info(f"{'JSON' if args.json else ''} {'CSV' if args.csv else ''} file(s) saved in {args.output_path}")

@@ -1,5 +1,6 @@
 from src.data import GenerateUserData
 from src.cli import CLI
+from src.logger import Logger
 
 class Main:
     def __init__(self):
@@ -10,6 +11,7 @@ class Main:
         """
         self.generate_user_data = GenerateUserData()
         self.cli = CLI()
+        
 
     def create_user_workflow(self):
         """
@@ -31,6 +33,8 @@ class Main:
         """
         self.cli.run_commands()
 
+logger = Logger(name="Test", log_file="app.log").logger
 if __name__ == "__main__":
     main = Main()
+    logger.info("Started programm")
     main.run_cli()
