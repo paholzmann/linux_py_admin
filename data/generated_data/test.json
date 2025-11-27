@@ -1,0 +1,82 @@
+{
+    "0": {
+        "first_name": "Lucas",
+        "last_name": "Lopez",
+        "username": "lucas.lopez",
+        "email": "lucas.lopez@example.com",
+        "department": "Sales",
+        "password": "68582"
+    },
+    "1": {
+        "first_name": "Amelia",
+        "last_name": "Rodriguez",
+        "username": "amelia.rodriguez",
+        "email": "amelia.rodriguez@example.com",
+        "department": "Engineering",
+        "password": "60827"
+    },
+    "2": {
+        "first_name": "Lucas",
+        "last_name": "Taylor",
+        "username": "lucas.taylor",
+        "email": "lucas.taylor@example.com",
+        "department": "Product",
+        "password": "57030"
+    },
+    "3": {
+        "first_name": "Noah",
+        "last_name": "Miller",
+        "username": "noah.miller",
+        "email": "noah.miller@example.com",
+        "department": "Marketing",
+        "password": "38685"
+    },
+    "4": {
+        "first_name": "Logan",
+        "last_name": "Moore",
+        "username": "logan.moore",
+        "email": "logan.moore@example.com",
+        "department": "Design",
+        "password": "57705"
+    },
+    "5": {
+        "first_name": "Evelyn",
+        "last_name": "Gonzalez",
+        "username": "evelyn.gonzalez",
+        "email": "evelyn.gonzalez@example.com",
+        "department": "Customer Success",
+        "password": "00895"
+    },
+    "6": {
+        "first_name": "Ava",
+        "last_name": "Anderson",
+        "username": "ava.anderson",
+        "email": "ava.anderson@example.com",
+        "department": "Sales",
+        "password": "76937"
+    },
+    "7": {
+        "first_name": "Charlotte",
+        "last_name": "Martin",
+        "username": "charlotte.martin",
+        "email": "charlotte.martin@example.com",
+        "department": "Operations",
+        "password": "34627"
+    },
+    "8": {
+        "first_name": "Benjamin",
+        "last_name": "Martin",
+        "username": "benjamin.martin",
+        "email": "benjamin.martin@example.com",
+        "department": "Product",
+        "password": "28478"
+    },
+    "9": {
+        "first_name": "Lucas",
+        "last_name": "Thomas",
+        "username": "lucas.thomas",
+        "email": "lucas.thomas@example.com",
+        "department": "Operations",
+        "password": "64501"
+    }
+}
