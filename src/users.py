@@ -13,11 +13,9 @@ class Users:
         """
         if filepath.endswith("csv"):
             df = pd.read_csv(filepath)
-            print(df)
         elif filepath.endswith("json"):
             df = pd.read_json(filepath)
             df = df.T
-            print(df)
         else:
             raise ValueError("Unsupported file format.")
         
@@ -43,4 +41,24 @@ class Users:
             except subprocess.CalledProcessError as error:
                 print(f"Error while creating user {username}: {error}")
 
-Users().add_users("data/generated_data/test.json")
+    def delete_users(self, filepath):
+        """
+        
+        """
+        if filepath.endswith("csv"):
+            df = pd.read_csv(filepath)
+        elif filepath.endswith("json"):
+            df = pd.read_json(filepath)
+            df = df.T
+        else:
+            raise ValueError("Unsupported file format.")
+        for index, row in df.iterrows():
+            username = row["username"]
+            try:
+                subprocess.run(
+                    ["sudo", "deluser", "--remove-home", username]
+                )
+            except subprocess.CalledProcessError as error:
+                print(f"Error while deleting user {username}: {error}")
+
+Users().delete_users("data/generated_data/test.json")
