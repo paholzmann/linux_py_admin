@@ -19,6 +19,7 @@ class CLI:
         self.parser = argparse.ArgumentParser(description="Main parser")
         self.subparser = self.parser.add_subparsers(dest="command")
         self.setup_generate_user_data_parser()
+        self.setup_users_parser()
 
     def setup_generate_user_data_parser(self):
         """
@@ -63,7 +64,7 @@ class CLI:
         )
         parser.add_argument(
             "action",
-            choices=["add-users", "remove-users", "show-existing"],
+            choices=["add-users", "delete-users", "show-existing"],
             help="Action to perform: add or delete users"
         )
         parser.add_argument(
@@ -85,9 +86,9 @@ class CLI:
                 self.file_handler.convert_to_file(data=data, filepath=args.output_path, to_json=args.json, to_csv=args.csv)
                 self.logger.info(f"{'JSON' if args.json else ''} {'CSV' if args.csv else ''} file(s) saved in {args.output_path}")
         elif args.command == "manage-users":
-            if args.action == "add":
+            if args.action == "add-users":
                 self.users.add_users(args.input_path)
-            elif args.action == "delete":
+            elif args.action == "delete-users":
                 self.users.delete_users(args.input_path)
             elif args.action == "show-existing":
                 self.users.show_existing_users()

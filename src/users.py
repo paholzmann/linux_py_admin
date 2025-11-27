@@ -69,9 +69,7 @@ class Users:
         """
         try:
             subprocess.run(
-                ["cat", "/etc/passwd"]
+                ["cut", "-d:", "-f1", "/etc/passwd"]
             )
         except subprocess.CalledProcessError as error:
             print(f"Error while loading existing users: {error}")
-
-Users().delete_users("data/generated_data/test.json")
