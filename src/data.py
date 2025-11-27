@@ -1,5 +1,6 @@
 import pandas as pd
 import random
+import json
 
 class GenerateUserData:
     def __init__(self):
@@ -46,7 +47,7 @@ class GenerateUserData:
             last_name = random.choice(self.last_names)
             username = f"{first_name.lower()}.{last_name.lower()}"
             email = f"{username}@example.com"
-            department = random.choice(self.departments),
+            department = random.choice(self.departments)
             password = lambda length=5: "".join(random.choice("0123456789") for _ in range(length))
             users[i] = {
                 "first_name": first_name,
@@ -70,13 +71,19 @@ class FileHandler:
         :param self: Description
         """
 
-    def convert_to_file(self, json=False, csv=False):
+    def convert_to_file(self, data, filepath, to_json=False, to_csv=False):
         """
         Docstring for convert_to_file
         
         :param self: Description
+        :param data: Description
+        :param filepath: Description
+        :param json: Description
+        :param csv: Description
         """
-
-
-users = GenerateUserData().generate_users(n=10)
-print(users)
+        if to_json:
+            with open(f"{filepath}.json", "w") as file:
+                json.dump(data, file, indent=4)
+        if to_csv:
+            df = pd.DataFrame.from_dict(data, orient="index")
+            df.to_csv(f"{filepath}.csv", index=False)

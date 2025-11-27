@@ -1,7 +1,7 @@
-from .data import GenerateUserData
+from .data import GenerateUserData, FileHandler
 import argparse
+import json
 
-# python -m src.cli  generate_user_data generate-users 10 
 
 class CLI:
     def __init__(self):
@@ -11,26 +11,43 @@ class CLI:
         :param self: Description
         """
         self.generate_user_data = GenerateUserData()
+        self.file_handler = FileHandler()
         self.parser = argparse.ArgumentParser(description="Main parser")
         self.subparser = self.parser.add_subparsers(dest="command")
         self.setup_generate_user_data_parser()
-        
+
     def setup_generate_user_data_parser(self):
         """
         Docstring for setup_generate_user_data_parser
         
         :param self: Description
+
+        Example:
+            >>> python -m main generate-users 10 --output-path data/generated_data/test --json --csv
         """
-        generate_user_data_parser = self.subparser.add_parser(
-            "generate_user_data",
+        parser = self.subparser.add_parser(
+            "generate-users",
             help="Generate bulk user data"
         )
-        generate_user_data_parser.add_argument(
-            "operation",
-            choices=["generate-users"],
-            help="Choose the desired operation"
+        parser.add_argument(
+            "n",
+            type=int,
+            help="Number of users to generate")
+        
+        parser.add_argument(
+            "--output-path",
+            help="Output file path"
         )
-        generate_user_data_parser.add_argument("n", type=int, help="Number of users to generate")
+        parser.add_argument(
+            "--json",
+            action="store_true",
+            help="Save output as JSON"
+        )
+        parser.add_argument(
+            "--csv",
+            action="store_true",
+            help="Save output as CSV"
+        )
 
     def run_commands(self):
         """
@@ -39,7 +56,8 @@ class CLI:
         :param self: Description
         """
         args = self.parser.parse_args()
-        if args.command == "generate_user_data":
-            if args.operation == "generate-users":
-                result = self.generate_user_data(args.n)
-            print(result)
+        if args.command == "generate-users":
+            data = self.generate_user_data.generate_users(args.n)
+            # print(data)
+            if args.output_path:
+                self.file_handler.convert_to_file(data=data, filepath=args.output_path, to_json=args.json, to_csv=args.csv)
