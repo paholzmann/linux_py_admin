@@ -63,4 +63,15 @@ class Users:
             except subprocess.CalledProcessError as error:
                 print(f"Error while deleting user {username}: {error}")
 
+    def show_existing_users(self):
+        """
+        
+        """
+        try:
+            subprocess.run(
+                ["cat", "/etc/passwd"]
+            )
+        except subprocess.CalledProcessError as error:
+            print(f"Error while loading existing users: {error}")
+
 Users().delete_users("data/generated_data/test.json")

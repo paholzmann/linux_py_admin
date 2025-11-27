@@ -63,7 +63,7 @@ class CLI:
         )
         parser.add_argument(
             "action",
-            choices=["add-users", "remove-users"],
+            choices=["add-users", "remove-users", "show-existing"],
             help="Action to perform: add or delete users"
         )
         parser.add_argument(
@@ -89,3 +89,5 @@ class CLI:
                 self.users.add_users(args.input_path)
             elif args.action == "delete":
                 self.users.delete_users(args.input_path)
+            elif args.action == "show-existing":
+                self.users.show_existing_users()
