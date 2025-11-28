@@ -92,7 +92,7 @@ class FileHandler:
         else:
             self.logger.info(f"Folder already exists: {folder_path}")
         if to_json:
-            json_path = os.path.join(folder_path, filename, ".json")
+            json_path = os.path.join(folder_path, filename)
             with open(json_path, "w") as file:
                 json.dump(data, file, indent=4)
                 self.logger.info(f"JSON file saved in path: {json_path}")
