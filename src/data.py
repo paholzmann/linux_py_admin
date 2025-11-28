@@ -97,7 +97,7 @@ class FileHandler:
                 json.dump(data, file, indent=4)
                 self.logger.info(f"JSON file saved in path: {json_path}")
         if to_csv:
-            csv_path = f"{folder_path}/{filename}.csv"
+            csv_path =os.path.join(folder_path, filename)
             df = pd.DataFrame.from_dict(data, orient="index")
             df.to_csv(csv_path, index=False)
             self.logger.info(f"CSV file created in path: {csv_path}")
