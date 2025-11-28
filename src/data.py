@@ -87,3 +87,9 @@ class FileHandler:
         if to_csv:
             df = pd.DataFrame.from_dict(data, orient="index")
             df.to_csv(f"{filepath}.csv", index=False)
+
+    def delete_files(self, folder):
+        """
+        Delete every file in a folder.
+        """
+        
