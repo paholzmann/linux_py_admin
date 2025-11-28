@@ -114,7 +114,11 @@ class FileHandler:
         for file in os.listdir(folder_path):
             if del_json:
                 if file.endswith(".json"):
-                    os.remove(os.path.join(folder_path, file))
+                    json_path = os.path.join(folder_path, file)
+                    os.remove(json_path)
+                    self.logger.info(f"JSON file deleted in path: {json_path}")
             if del_csv:
                 if file.endswith(".csv"):
-                    os.remove(os.path.join(folder_path, file))
+                    csv_path = os.path.join(folder_path, file)
+                    os.remove(csv_path)
+                    self.logger.info(f"CSV file deleted in path: {csv_path}")
