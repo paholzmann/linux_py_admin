@@ -1,6 +1,7 @@
 import pandas as pd
 import random
 import json
+import os
 
 class GenerateUserData:
     def __init__(self):
@@ -92,4 +93,6 @@ class FileHandler:
         """
         Delete every file in a folder.
         """
-        
+        filelist = [file for file in os.listdir(folder)]
+        for file in filelist:
+            os.remove(os.path.join(folder, file))

@@ -20,6 +20,7 @@ class CLI:
         self.subparser = self.parser.add_subparsers(dest="command")
         self.setup_generate_user_data_parser()
         self.setup_users_parser()
+        self.setup_delete_files_parser()
 
     def setup_generate_user_data_parser(self):
         """
@@ -52,6 +53,19 @@ class CLI:
             "--csv",
             action="store_true",
             help="Save output as CSV"
+        )
+
+    def setup_delete_files_parser(self):
+        """
+        
+        """
+        parser = self.subparser.add_parser(
+            "delete-files",
+            help="Delete all files in a directory"
+        )
+        parser.add_argument(
+            "--folder",
+            help="Directory path"
         )
 
     def setup_users_parser(self):
@@ -92,3 +106,6 @@ class CLI:
                 self.users.delete_users(args.input_path)
             elif args.action == "show-existing":
                 self.users.show_existing_users()
+
+        elif args.command == "delete-files":
+            self.file_handler.delete_files(folder=args.folder)
