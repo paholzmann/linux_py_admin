@@ -110,7 +110,8 @@ class FileHandler:
         if not os.path.exists(folder_path):
             self.logger.warning(f"Folder: {folder_path} does not exist and no files can be deleted")
             return
-        if not os.listdir(folder_path):
+        files_exist = os.listdir(folder_path)
+        if not os.listdir(files_exist):
             self.logger.error(f"Folder: {folder_path} is empty and thus no files can be deleted")
             return
         for file in os.listdir(folder_path):
