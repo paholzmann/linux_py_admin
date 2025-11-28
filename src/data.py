@@ -109,16 +109,16 @@ class FileHandler:
         folder_path = os.path.join("data", folder).replace("\\", "/")
         if not os.path.exists(folder_path):
             self.logger.warning(f"Folder: {folder_path} does not exist and no files can be deleted")
+            return
         if not os.listdir(folder_path):
             self.logger.error(f"Folder: {folder_path} is empty and thus no files can be deleted")
+            return
         for file in os.listdir(folder_path):
-            if del_json:
-                if file.endswith(".json"):
-                    json_path = os.path.join(folder_path, file)
-                    os.remove(json_path)
-                    self.logger.info(f"JSON file deleted in path: {json_path}")
-            if del_csv:
-                if file.endswith(".csv"):
-                    csv_path = os.path.join(folder_path, file)
-                    os.remove(csv_path)
-                    self.logger.info(f"CSV file deleted in path: {csv_path}")
+            if del_json and file.endswith(".json"):
+                json_path = os.path.join(folder_path, file)
+                os.remove(json_path)
+                self.logger.info(f"JSON file deleted in path: {json_path}")
+            if del_csv and file.endswith(".csv"):
+                csv_path = os.path.join(folder_path, file)
+                os.remove(csv_path)
+                self.logger.info(f"CSV file deleted in path: {csv_path}")
