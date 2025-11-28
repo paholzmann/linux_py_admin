@@ -41,8 +41,12 @@ class CLI:
             help="Number of users to generate")
         
         parser.add_argument(
-            "--output-path",
-            help="Output file path"
+            "--folder",
+            help="Output folder name"
+        )
+        parser.add_argument(
+            "--filename",
+            help="Output filename"
         )
         parser.add_argument(
             "--json",
@@ -66,6 +70,16 @@ class CLI:
         parser.add_argument(
             "--folder",
             help="Directory path"
+        )
+        parser.add_argument(
+            "--json",
+            action="store_true",
+            help="Delete every JSON file"
+        )
+        parser.add_argument(
+            "--csv",
+            action="store_true",
+            help="Delete every CSV file"
         )
 
     def setup_users_parser(self):
@@ -96,9 +110,8 @@ class CLI:
         if args.command == "generate-users":
             data = self.generate_user_data.generate_users(args.n)
             self.logger.info(f"{args.n} users generated")
-            if args.output_path:
-                self.file_handler.convert_to_file(data=data, filepath=args.output_path, to_json=args.json, to_csv=args.csv)
-                self.logger.info(f"{'JSON' if args.json else ''} {'CSV' if args.csv else ''} file(s) saved in {args.output_path}")
+            if args.folder:
+                self.file_handler.convert_to_file(data=data, folder=args.folder, filename=args.filename ,to_json=args.json, to_csv=args.csv)
         elif args.command == "manage-users":
             if args.action == "add-users":
                 self.users.add_users(args.input_path)
@@ -108,4 +121,4 @@ class CLI:
                 self.users.show_existing_users()
 
         elif args.command == "delete-files":
-            self.file_handler.delete_files(folder=args.folder)
+            self.file_handler.delete_files(folder=args.folder, del_json=args.json, del_csv=args.csv)
