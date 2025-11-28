@@ -92,12 +92,12 @@ class FileHandler:
         else:
             self.logger.info(f"Folder already exists: {folder_path}")
         if to_json:
-            json_path = os.path.join(folder_path, filename)
+            json_path = os.path.join(folder_path, f"{filename}.json")
             with open(json_path, "w") as file:
                 json.dump(data, file, indent=4)
                 self.logger.info(f"JSON file saved in path: {json_path}")
         if to_csv:
-            csv_path =os.path.join(folder_path, filename)
+            csv_path = os.path.join(folder_path, f"{filename}.csv")
             df = pd.DataFrame.from_dict(data, orient="index")
             df.to_csv(csv_path, index=False)
             self.logger.info(f"CSV file created in path: {csv_path}")
