@@ -23,6 +23,7 @@ class CLI:
         self.setup_generate_user_data_parser()
         self.setup_users_parser()
         self.setup_delete_files_parser()
+        self.setup_groups_parser()
 
     def setup_generate_user_data_parser(self):
         """
