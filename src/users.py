@@ -44,7 +44,7 @@ class Users:
 
     def delete_users(self, filepath):
         """
-        
+        python -m main manage-users delete-users --input-path data/generated_data/test/None.csv
         """
         if filepath.endswith("csv"):
             df = pd.read_csv(filepath)
@@ -57,7 +57,8 @@ class Users:
             username = row["username"]
             try:
                 subprocess.run(
-                    ["deluser", "--remove-home", username]
+                    ["deluser", "--remove-home", username],
+                    check=True
                 )
 
             except subprocess.CalledProcessError as error:
@@ -65,7 +66,7 @@ class Users:
 
     def show_existing_users(self):
         """
-        
+        python -m main manage-users show-existing
         """
         try:
             subprocess.run(
