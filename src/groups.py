@@ -15,12 +15,12 @@ class Groups:
         groups = ["Engineering",
                 "Product",
                 "Design",
-                "Quality Assurance",
+                "Quality-Assurance",
                 "Operations",
-                "Human Resources",
+                "HR",
                 "Marketing",
                 "Sales",
-                "Customer Success",
+                "Customer-Success",
                 "Finance"]
         for group in groups:
             try:
