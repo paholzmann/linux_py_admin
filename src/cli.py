@@ -1,6 +1,7 @@
 from .data import GenerateUserData, FileHandler
 from .users import Users
 from .logger import Logger
+from .groups import Groups
 import argparse
 import json
 
@@ -15,6 +16,7 @@ class CLI:
         self.generate_user_data = GenerateUserData()
         self.file_handler = FileHandler()
         self.users = Users()
+        self.groups = Groups()
         self.logger = Logger(name="Test", log_file="app.log").logger
         self.parser = argparse.ArgumentParser(description="Main parser")
         self.subparser = self.parser.add_subparsers(dest="command")
@@ -99,7 +101,19 @@ class CLI:
             "--input-path",
             help="Input file path"
         )
-
+    def setup_groups_parser(self):
+        """
+        
+        """
+        parser = self.subparser.add_parser(
+            "manage-groups",
+            help="Manage groups"
+        )
+        parser.add_argument(
+            "action",
+            choices=["create-groups", "add-groups", "delete-groups", "add-users-to-groups", "remove-users-from-groups"],
+            help="Action to perform: Create, Add, Remove"
+        )
     def run_commands(self):
         """
         Docstring for run_commands
@@ -122,3 +136,7 @@ class CLI:
 
         elif args.command == "delete-files":
             self.file_handler.delete_files(folder=args.folder, del_json=args.json, del_csv=args.csv)
+        
+        elif args.command == "manage-groups":
+            if args.action == "create-groups":
+                self.groups.create_groups()

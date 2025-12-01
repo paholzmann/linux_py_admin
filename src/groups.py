@@ -7,3 +7,31 @@ class Groups:
         """
         
         """
+
+    def create_groups(self):
+        """
+        
+        """
+        groups = ["Engineering",
+                "Product",
+                "Design",
+                "Quality Assurance",
+                "Operations",
+                "Human Resources",
+                "Marketing",
+                "Sales",
+                "Customer Success",
+                "Finance"]
+        for group in groups:
+            try:
+                subprocess.run(
+                    ["addgroup", group],
+                    check=True
+                )
+            except subprocess.CalledProcessError as error:
+                print(f"Error while creating group {group}: {error}")
+    
+    def add_users_to_groups(self):
+        """
+        
+        """
