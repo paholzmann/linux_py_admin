@@ -30,11 +30,11 @@ class Users:
         
             try:
                 subprocess.run(
-                    ["sudo", "useradd", "-m", "-c", f"{first_name} {last_name}, {email}", username],
+                    ["useradd", "-m", "-c", f"{first_name} {last_name}, {email}", username],
                     check=True
                 )
                 subprocess.run(
-                    ["sudo", "chpasswd"],
+                    ["chpasswd"],
                     input=f"{username}:{password}",
                     text=True,
                     check=True
@@ -57,7 +57,7 @@ class Users:
             username = row["username"]
             try:
                 subprocess.run(
-                    ["sudo", "deluser", "--remove-home", username]
+                    ["deluser", "--remove-home", username]
                 )
 
             except subprocess.CalledProcessError as error:
