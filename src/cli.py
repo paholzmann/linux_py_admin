@@ -29,7 +29,7 @@ class CLI:
         :param self: Description
 
         Example:
-            >>> python -m main generate-users 10 --output-path data/generated_data/test --json --csv
+            >>> python -m main generate-users 10 --folder generated_data/test --json --csv
         """
         parser = self.subparser.add_parser(
             "generate-users",
