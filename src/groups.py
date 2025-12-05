@@ -66,10 +66,10 @@ class Groups:
                 subprocess.run(
                     ["groupdel", group]
                 )
-                self.all_groups.pop(group)
+                self.all_groups.remove(group)
             except subprocess.CalledProcessError as error:
                 print(f"Error while deleting group: {group}: {error}")
-                
+
     def add_users_to_groups(self):
         """
         
