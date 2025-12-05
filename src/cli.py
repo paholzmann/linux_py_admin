@@ -112,7 +112,7 @@ class CLI:
         )
         parser.add_argument(
             "action",
-            choices=["create-groups", "add-groups", "delete-groups", "add-users-to-groups", "remove-users-from-groups"],
+            choices=["show-existing","create-groups", "add-groups", "delete-groups", "add-users-to-groups", "remove-users-from-groups"],
             help="Action to perform: Create, Add, Remove"
         )
     def run_commands(self):
@@ -139,5 +139,7 @@ class CLI:
             self.file_handler.delete_files(folder=args.folder, del_json=args.json, del_csv=args.csv)
         
         elif args.command == "manage-groups":
-            if args.action == "create-groups":
+            if args.action == "show-existing":
+                self.groups.show_existing_groups()
+            elif args.action == "create-groups":
                 self.groups.create_groups()

@@ -8,6 +8,18 @@ class Groups:
         
         """
 
+    def show_existing_groups(self):
+        """
+        
+        """
+        try:
+            subprocess.run(
+                ["cat", "/etc/group"],
+                check=True
+                )
+        except subprocess.CalledProcessError as error:
+            print(f"Error while displaying groups: {error}")
+
     def create_groups(self):
         """
         
@@ -35,3 +47,4 @@ class Groups:
         """
         
         """
+        
