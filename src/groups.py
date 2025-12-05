@@ -10,7 +10,7 @@ class Groups:
 
     def show_existing_groups(self):
         """
-        
+        python -m main manage-groups show-existing
         """
         try:
             subprocess.run(
@@ -22,7 +22,7 @@ class Groups:
 
     def create_groups(self):
         """
-        
+        python -m main manage-groups create-groups
         """
         groups = ["Engineering",
                 "Product",
@@ -42,6 +42,18 @@ class Groups:
                 )
             except subprocess.CalledProcessError as error:
                 print(f"Error while creating group {group}: {error}")
+
+    def create_single_group(self, group):
+        """
+        
+        """
+        try:
+            subprocess.run(
+                ["addgroup", group],
+                check=True
+            )
+        except subprocess.CalledProcessError as error:
+            print(f"Error while creating group: {group}: {error}")
     
     def add_users_to_groups(self):
         """
