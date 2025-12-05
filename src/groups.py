@@ -70,6 +70,19 @@ class Groups:
             except subprocess.CalledProcessError as error:
                 print(f"Error while deleting group: {group}: {error}")
 
+
+    def delete_single_group(self, group):
+        """
+        
+        """
+        try:
+            subprocess.run(
+                ["groupdel", group],
+                help="Delete a single group"
+            )
+        except subprocess.CalledProcessError as error:
+            print(f"Error while deleting single group: {group}: {error}")
+
     def add_users_to_groups(self):
         """
         

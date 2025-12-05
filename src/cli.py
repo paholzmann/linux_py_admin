@@ -135,6 +135,15 @@ class CLI:
             "delete-all-groups",
             help="Delete all custom created groups"
         )
+        delete_single_group_parser = action_parser.add_parser(
+            "delete-single-group",
+            help="Delete a single group"
+        )
+        delete_single_group_parser.add_argument(
+            "group",
+            type=str,
+            help="Group name to delete group"
+        )
     def run_commands(self):
         """
         Docstring for run_commands
@@ -167,3 +176,5 @@ class CLI:
                 self.groups.create_single_group(group=args.group)
             elif args.action == "delete-all-groups":
                 self.groups.delete_all_groups()
+            elif args.action == "delete-single-group":
+                self.groups.delete_single_group(group=args.group)
