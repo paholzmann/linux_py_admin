@@ -112,7 +112,7 @@ class CLI:
         )
         parser.add_argument(
             "action",
-            choices=["show-existing", "create-groups", "create-single-group"]
+            choices=["show-existing", "create-groups", "create-single-group"],
             help="Action to perform: Create, Add, Remove"
         )
         parser.add_argument(
