@@ -7,6 +7,16 @@ class Groups:
         """
         
         """
+        self.all_groups = ["Engineering",
+                                    "Product",
+                                    "Design",
+                                    "Quality-Assurance",
+                                    "Operations",
+                                    "HR",
+                                    "Marketing",
+                                    "Sales",
+                                    "Customer-Success",
+                                    "Finance"]
 
     def show_existing_groups(self):
         """
@@ -24,17 +34,8 @@ class Groups:
         """
         python -m main manage-groups create-groups
         """
-        groups = ["Engineering",
-                "Product",
-                "Design",
-                "Quality-Assurance",
-                "Operations",
-                "HR",
-                "Marketing",
-                "Sales",
-                "Customer-Success",
-                "Finance"]
-        for group in groups:
+
+        for group in self.all_groups:
             try:
                 subprocess.run(
                     ["addgroup", group],
@@ -52,11 +53,24 @@ class Groups:
                 ["addgroup", group],
                 check=True
             )
+            self.all_groups.append(group)
         except subprocess.CalledProcessError as error:
             print(f"Error while creating group: {group}: {error}")
     
+    def delete_all_groups(self):
+        """
+        
+        """
+        for group in self.all_groups:
+            try:
+                subprocess.run(
+                    ["groupdel", group]
+                )
+                self.all_groups.pop(group)
+            except subprocess.CalledProcessError as error:
+                print(f"Error while deleting group: {group}: {error}")
+                
     def add_users_to_groups(self):
         """
         
         """
-        
