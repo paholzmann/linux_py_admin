@@ -104,7 +104,7 @@ class CLI:
         )
     def setup_groups_parser(self):
         """
-        
+        python -m manage-groups show-existing
         """
         parser = self.subparser.add_parser(
             "manage-groups",
