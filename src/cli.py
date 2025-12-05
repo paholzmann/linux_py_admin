@@ -118,7 +118,7 @@ class CLI:
         parser.add_argument(
             "group",
             type=str,
-            Help="Single group to create"
+            help="Single group to create"
         )
     def run_commands(self):
         """
