@@ -110,15 +110,13 @@ class CLI:
             "manage-groups",
             help="Manage groups"
         )
-        parser.add_argument(
-            "action",
-            choices=["show-existing", "create-groups", "create-single-group"],
-            help="Action to perform: Create, Add, Remove"
+        action_parser = parser.add_subparsers(
+            dest="action",
+            required=True
         )
-        parser.add_argument(
-            "group",
-            type=str,
-            help="Single group to create"
+        show_parser = action_parser.add_parser(
+            "show-existing",
+            help="Show existing groups"
         )
     def run_commands(self):
         """
@@ -146,7 +144,3 @@ class CLI:
         elif args.command == "manage-groups":
             if args.action == "show-existing":
                 self.groups.show_existing_groups()
-            elif args.action == "create-groups":
-                self.groups.create_groups()
-            elif args.action == "create-single-group":
-                self.groups.create_single_group(group=args.group)
