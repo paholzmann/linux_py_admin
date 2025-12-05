@@ -77,8 +77,7 @@ class Groups:
         """
         try:
             subprocess.run(
-                ["groupdel", group],
-                help="Delete a single group"
+                ["groupdel", group]
             )
         except subprocess.CalledProcessError as error:
             print(f"Error while deleting single group: {group}: {error}")
