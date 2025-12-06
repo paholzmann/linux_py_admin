@@ -3,6 +3,7 @@ Python script to create, delete, and manage Linux/Debian users, set permissions,
 ## Functionality
 ### 1. Custom single user management
 #### 1.1 Basic Operations
+```bash
 #### 1.1.1 Add single user to System
     python -m main manage-users add-single-user userName
 #### 1.1.2 Add single user to System groups
