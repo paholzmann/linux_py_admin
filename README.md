@@ -1,10 +1,10 @@
 # linux_py_admin
 Python script to create, delete, and manage Linux/Debian users, set permissions, assign roles, log changes, and import users from CSV/Excel. Streamlines user management for admins and DevOps.
 ## Functionality
-1. Custom single Data
+### 1. Custom single Data
 
-1.1 Add single user to System
-    python -m main manage-users add-single-user userName
+#### 1.1 Add single user to System
+        python -m main manage-users add-single-user userName
 1.2 Add single user to System groups
     python -m main manage-users add-single-user-to-groups userName groupNames
 1.3 Remove single user from System
