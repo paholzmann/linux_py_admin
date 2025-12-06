@@ -15,6 +15,10 @@ Python script to create, delete, and manage Linux/Debian users, set permissions,
     python -m main 
 
 ### 3. Utilities
-3.1 
-3.2 Show existing users
+#### 3.1 Create dummy users
+    python -m main manage-users create-dummy-users n
+#### 3.2 Create users from JSON or CSV
+    python -m main manage-users create-real-users --json
+    python -m main manage-users create-real-users --csv
+#### 3.3 Show existing users
     python -m main manage-users show-existing
