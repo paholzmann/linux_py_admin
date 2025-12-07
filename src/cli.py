@@ -1,7 +1,7 @@
 from .data import GenerateUserData, FileHandler
 from .users import Users, SingleUsers
 from .logger import Logger
-from .groups import Groups
+from .groups import Groups, SingleGroups
 from .utilities import Utilities
 import argparse
 import json
@@ -19,6 +19,7 @@ class CLI:
         self.users = Users()
         self.single_users = SingleUsers()
         self.groups = Groups()
+        self.single_groups = SingleGroups()
         self.utilities = Utilities()
         self.logger = Logger(name="CLI", log_file="app.log").logger
         self.parser = argparse.ArgumentParser(description="Main parser")
@@ -177,6 +178,23 @@ class CLI:
             help="Show existing groups"
         )
         return parser
+    
+    def create_single_group_parser(self, action_parser):
+        """
+        Docstring for create_single_group_parser
+        
+        :param self: Description
+        :param action_parser: Description
+        """
+        parser = action_parser.add_parser(
+            "create-single-group",
+            help="Create a single group"
+        )
+        parser.add_argument(
+            "group_name",
+            type=str,
+            help="Group name to create group"
+        )
 
     def run_commands(self):
         """
@@ -201,3 +219,5 @@ class CLI:
         elif args.command == "manage-groups":
             if args.action == "show-existing-groups":
                 self.utilities.show_existing_groups()
+            elif args.action == "create-single-group":
+                self.single_groups.create_single_group(group_name=args.group_name)
