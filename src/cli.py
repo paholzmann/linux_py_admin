@@ -166,6 +166,7 @@ class CLI:
             required=True
         )
         self.show_existing_groups_parser(action_parser=action_parser)
+        self.create_single_group_parser(action_parser=action_parser)
     
     def show_existing_groups_parser(self, action_parser):
         """
