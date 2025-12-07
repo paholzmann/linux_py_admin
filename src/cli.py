@@ -19,7 +19,7 @@ class CLI:
         self.users = Users()
         self.groups = Groups()
         self.utilities = Utilities()
-        self.logger = Logger(name="Test", log_file="app.log").logger
+        self.logger = Logger(name="CLI", log_file="app.log").logger
         self.parser = argparse.ArgumentParser(description="Main parser")
         self.subparser = self.parser.add_subparsers(dest="command")
         self.setup_users_parser()
@@ -41,8 +41,13 @@ class CLI:
             help="Create dummy users"
         )
         create_dummy_parser.add_argument(
-            n=int,
+            "n",
+            type=int,
             help="Number of dummy users to create"
+        )
+        show_existing_parser = action_parser.add_parser(
+            "show-existing-users",
+            help="Show every existing user in the System"
         )
     def run_commands(self):
         """
@@ -54,4 +59,5 @@ class CLI:
         if args.command == "manage-users":
             if args.action == "create-dummy-users":
                 dummy_users = self.utilities.create_dummy_users(n=args.n)
-            
+            if args.action == "show-existing-users":
+                self.utilities.show_existing_users()

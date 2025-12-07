@@ -63,3 +63,15 @@ class Utilities:
             }
         self.logger.info(f"Created {n} users with data: {list(users[0].keys())}")
         return users
+
+    def show_existing_users(self):
+        """
+        python -m main manage-users show-existing
+        """
+        try:
+            subprocess.run(
+                ["cut", "-d:", "-f1", "/etc/passwd"]
+            )
+            self.logger.info(f"Showing every existing user in the System")
+        except subprocess.CalledProcessError as error:
+            self.logger.warning(f"Error while loading every existing user in the System: {error}")

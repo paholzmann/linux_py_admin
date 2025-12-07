@@ -63,14 +63,3 @@ class Users:
 
             except subprocess.CalledProcessError as error:
                 print(f"Error while deleting user {username}: {error}")
-
-    def show_existing_users(self):
-        """
-        python -m main manage-users show-existing
-        """
-        try:
-            subprocess.run(
-                ["cut", "-d:", "-f1", "/etc/passwd"]
-            )
-        except subprocess.CalledProcessError as error:
-            print(f"Error while loading existing users: {error}")
