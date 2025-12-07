@@ -71,7 +71,8 @@ class Utilities:
         try:
             self.logger.info(f"Showing every existing user")
             subprocess.run(
-                ["cut", "-d:", "-f1", "/etc/passwd"]
+                ["cut", "-d:", "-f1", "/etc/passwd"],
+                check=True
             )
         except subprocess.CalledProcessError as error:
             self.logger.warning(f"Error while loading every existing user: {error}")
@@ -83,7 +84,8 @@ class Utilities:
         try:
             self.logger.info(f"Searching for user: {username}")
             subprocess.run(
-                ["grep", username, "/etc/passwd"]
+                ["grep", username, "/etc/passwd"],
+                check=True
             )
         except subprocess.CalledProcessError as error:
             self.logger.warning(f"Error while searching for user: {username}: {error}")
