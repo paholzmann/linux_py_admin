@@ -38,53 +38,88 @@ class CLI:
             dest="action",
             required=True
         )
-
-        create_dummy_parser = action_parser.add_parser(
+        self.create_dummy_parser(action_parser=action_parser)
+        self.show_existing_parser(action_parser=action_parser)
+        self.find_user_parser(action_parser=action_parser)
+        self.create_single_user_parser(action_parser=action_parser)
+        self.delete_single_user_parser(action_parser=action_parser)
+    
+    def create_dummy_parser(self, action_parser):
+        """
+        Docstring for create_dummy_parser
+        
+        :param self: Description
+        :param action_parser: Description
+        """
+        parser = action_parser.add_parser(
             "create-dummy-users",
             help="Create dummy users"
         )
-        create_dummy_parser.add_argument(
+        parser.add_argument(
             "n",
             type=int,
             help="Number of dummy users to create"
         )
-
-        show_existing_parser = action_parser.add_parser(
+        return parser
+    
+    def show_existing_parser(self, action_parser):
+        """
+        Docstring for show_existing_parser
+        
+        :param self: Description
+        :param action_parser: Description
+        """
+        parser = action_parser.add_parser(
             "show-existing-users",
             help="Show every existing user in the System"
         )
-
-        find_user_parser = action_parser.add_parser(
+        return parser
+    
+    def find_user_parser(self, action_parser):
+        """
+        Docstring for find_user_parser
+        
+        :param self: Description
+        :param action_parser: Description
+        """
+        parser = action_parser.add_parser(
             "find-user",
             help="Find user by username"
         )
-        find_user_parser.add_argument(
+        parser.add_argument(
             "username",
             type=str,
             help="User to find"
         )
-
-        create_single_user_parser = action_parser.add_parser(
+        return parser
+    
+    def create_single_user_parser(self, action_parser):
+        """
+        Docstring for create_single_user_parser
+        
+        :param self: Description
+        :param action_parser: Description
+        """
+        parser = action_parser.add_parser(
             "create-single-user",
             help="Create single user"
         )
-        create_single_user_parser.add_argument(
+        parser.add_argument(
             "first_name",
             type=str,
             help="First name of the user"
         )
-        create_single_user_parser.add_argument(
+        parser.add_argument(
             "last_name",
             type=str,
             help="Last name of the user"
         )
-        create_single_user_parser.add_argument(
+        parser.add_argument(
             "email",
             type=str,
             help="Email of the user"
         )
-        self.delete_single_user_parser(action_parser=action_parser)
-
+        return parser
     def delete_single_user_parser(self, action_parser):
         """
         Docstring for delete_single_user_parser
