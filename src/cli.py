@@ -83,26 +83,24 @@ class CLI:
             type=str,
             help="Email of the user"
         )
-        create_single_user_parser.add_argument(
-            "username",
-            type=str,
-            help="Username o the user"
-        )
-        create_single_user_parser.add_argument(
-            "password",
-            type=str,
-            help="Password of the user"
-        )
+        self.delete_single_user_parser(action_parser=action_parser)
 
-        delete_single_user_parser = action_parser.add_parser(
+    def delete_single_user_parser(self, action_parser):
+        """
+        Docstring for delete_single_user_parser
+        
+        :param self: Description
+        """
+        parser = action_parser.add_parser(
             "delete-single-user",
             help="Delete single user by username"
         )
-        delete_single_user_parser.add_argument(
+        parser.add_argument(
             "username",
             type=str,
             help="Username of the user to delete"
         )
+        return parser
     def run_commands(self):
         """
         Docstring for run_commands
