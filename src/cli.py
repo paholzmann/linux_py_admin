@@ -70,7 +70,3 @@ class CLI:
                 self.utilities.show_existing_users()
             case ("utilities", "find-user"):
                 self.utilities.find_by_username(username=args.username)
-
-
-if __name__ == "__main__":
-    CLI().run_cli()
