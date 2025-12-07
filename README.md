@@ -2,28 +2,23 @@
 Python script to create, delete, and manage Linux/Debian users, set permissions, assign roles, log changes, and import users from CSV/Excel. Streamlines user management for admins and DevOps.
 ## Functionality
 ### 1. Custom single user management
-#### 1.1 Basic Operations
+#### Basic Operations
     python -m main manage-users add-single-user userName
     python -m main manage-users add-single-user-to-groups userName groupNames
     python -m main manage-users remove-single-user userName
     python -m main manage-users remove-single-user-from-groups userName groupNames
     python -m main manage-users set-password userName
     python -m main manage-users add-single-user userName
-#### 1.1.2 Add single user to System groups
-    python -m main manage-users add-single-user-to-groups userName groupNames
-#### 1.1.3 Remove single user from System
-    python -m main manage-users remove-single-user userName
-#### 1.1.4 Remove single user from System groups
-    python -m main manage-users remove-single-user-from-groups userName groupNames
-#### 1.1.5 Set password policies
-    python -m main manage-users set-password userName
+#### Groups
+    python -m main manage-users add-single-user-to-groups userName groupNames rights
+    python -m main manage-users remove-single-user-from-groups userName groupNames rights
 #### 1.2 Advanced Operations
-##### 1.2.1 Update user data
+##### Update user data
     python -m main manage-users update-user-name oldUserName newUserName
     python -m main manage-users update-password oldUserName newUserName
     python -m main manage-users update-all oldUserName newUserName
 ### 2. Bulk user management from files
-#### 2.1 Add many users to System from CSV/JSON/Excel
+#### Add many users to System from CSV/JSON/Excel
     python -m main manage-users add-bulk-users --csv
     python -m main manage-users add-bulk-users --json
     python -m main manage-users add-bulk-users --excel
