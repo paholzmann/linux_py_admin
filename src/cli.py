@@ -49,6 +49,15 @@ class CLI:
             "show-existing-users",
             help="Show every existing user in the System"
         )
+        find_user_parser = action_parser.add_parser(
+            "find-user",
+            help="Find user by username"
+        )
+        find_user_parser.add_argument(
+            "username",
+            type=str,
+            help="User to find"
+        )
     def run_commands(self):
         """
         Docstring for run_commands
@@ -59,5 +68,7 @@ class CLI:
         if args.command == "manage-users":
             if args.action == "create-dummy-users":
                 dummy_users = self.utilities.create_dummy_users(n=args.n)
-            if args.action == "show-existing-users":
+            elif args.action == "show-existing-users":
                 self.utilities.show_existing_users()
+            elif args.action == "fins-user":
+                self.utilities.find_by_username(username=args.username)

@@ -69,9 +69,21 @@ class Utilities:
         python -m main manage-users show-existing
         """
         try:
-            self.logger.info(f"Showing every existing user in the System")
+            self.logger.info(f"Showing every existing user")
             subprocess.run(
                 ["cut", "-d:", "-f1", "/etc/passwd"]
             )
         except subprocess.CalledProcessError as error:
-            self.logger.warning(f"Error while loading every existing user in the System: {error}")
+            self.logger.warning(f"Error while loading every existing user: {error}")
+
+    def find_by_username(self, username):
+        """
+        python -m main manage-users find-user username
+        """
+        try:
+            self.logger.info(f"Searching for user: {username}")
+            subprocess.run(
+                ["grep", username, "/etc/passwd"]
+            )
+        except subprocess.CalledProcessError as error:
+            self.logger.warning(f"Error while searching for user: {username}: {error}")
