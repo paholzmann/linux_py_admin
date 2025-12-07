@@ -69,9 +69,9 @@ class Utilities:
         python -m main manage-users show-existing
         """
         try:
+            self.logger.info(f"Showing every existing user in the System")
             subprocess.run(
                 ["cut", "-d:", "-f1", "/etc/passwd"]
             )
-            self.logger.info(f"Showing every existing user in the System")
         except subprocess.CalledProcessError as error:
             self.logger.warning(f"Error while loading every existing user in the System: {error}")
