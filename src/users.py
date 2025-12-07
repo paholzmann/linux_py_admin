@@ -10,7 +10,7 @@ class Users:
 
     def add_users(self, filepath):
         """
-        
+        python -m main manage-users add-users --input-path data/generated_data/test/None.csv
         """
         if filepath.endswith("csv"):
             df = pd.read_csv(filepath)

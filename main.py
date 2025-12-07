@@ -1,7 +1,6 @@
 from src.data import GenerateUserData
 from src.cli import CLI
 from src.logger import Logger
-
 class Main:
     def __init__(self):
         """
