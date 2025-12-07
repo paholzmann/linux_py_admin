@@ -60,18 +60,6 @@ class Groups:
             except subprocess.CalledProcessError as error:
                 print(f"Error while deleting group: {group}: {error}")
 
-
-    def delete_single_group(self, group):
-        """
-        
-        """
-        try:
-            subprocess.run(
-                ["groupdel", group]
-            )
-        except subprocess.CalledProcessError as error:
-            print(f"Error while deleting single group: {group}: {error}")
-
     def add_users_to_groups(self):
         """
         
@@ -101,3 +89,18 @@ class SingleGroups:
             )
         except subprocess.CalledProcessError as error:
             self.logger.error(f"Error while creating group {group_name}: {error}")
+
+    def delete_single_group(self, group_name):
+        """
+        Docstring for delete_single_group
+        
+        :param self: Description
+        :param group_name: Description
+        """
+        try:
+            self.logger.warning(f"Deleting group: {group_name}")
+            subprocess.run(
+                ["groupdel", group_name]
+            )
+        except subprocess.CalledProcessError as error:
+            self.logger.error(f"Error while deleting single group: {group_name}: {error}")

@@ -167,6 +167,7 @@ class CLI:
         )
         self.show_existing_groups_parser(action_parser=action_parser)
         self.create_single_group_parser(action_parser=action_parser)
+        self.delete_single_group_parser(action_parser=action_parser)
     
     def show_existing_groups_parser(self, action_parser):
         """
@@ -196,6 +197,25 @@ class CLI:
             type=str,
             help="Group name to create group"
         )
+        return parser
+
+    def delete_single_group_parser(self, action_parser):
+        """
+        Docstring for delete_single_group_parser
+        
+        :param self: Description
+        :param action_parser: Description
+        """
+        parser = action_parser.add_parser(
+            "delete-single-group",
+            help="Delete a single group"
+        )
+        parser.add_argument(
+            "group_name",
+            type=str,
+            help="Group name of the group to delete"
+        )
+        return parser
 
     def run_commands(self):
         """
@@ -222,3 +242,5 @@ class CLI:
                 self.utilities.show_existing_groups()
             elif args.action == "create-single-group":
                 self.single_groups.create_single_group(group_name=args.group_name)
+            elif args.action == "delete-single-group":
+                self.single_groups.delete_single_group(group_name=args.group_name)
