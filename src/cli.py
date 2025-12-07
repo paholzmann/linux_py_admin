@@ -95,7 +95,7 @@ class CLI:
         )
 
         delete_single_user_parser = action_parser.add_parser(
-            "delte-single-user",
+            "delete-single-user",
             help="Delete single user by username"
         )
         delete_single_user_parser.add_argument(
@@ -120,5 +120,5 @@ class CLI:
             elif args.action == "create-single-user":
                 self.single_users.create_single_user(first_name=args.first_name, last_name=args.last_name, email=args.email,
                                                 username=args.username, password=args.password)
-            elif args.action == "delte-single-user":
+            elif args.action == "delete-single-user":
                 self.single_users.delete_single_user(username=args.username)
