@@ -107,3 +107,19 @@ class SingleUsers:
 
         except subprocess.CalledProcessError as error:
             self.logger.error(f"Error while deleting user {username}: {error}")
+
+    def add_single_user_to_group(self, username, group_name):
+        """
+        Docstring for add_single_user_to_group
+        
+        :param self: Description
+        :param username: Description
+        """
+        try:
+            self.logger.info(f"Adding user: {username} to group: {group_name}")
+            subprocess.run(
+                ["usermod", "-aG", group_name, username],
+                check=True
+            )
+        except subprocess.CalledProcessError as error:
+            self.logger.error(f"Error while adding user: {username} to group: {group_name}: {error}")

@@ -45,6 +45,7 @@ class CLI:
         self.find_user_parser(action_parser=action_parser)
         self.create_single_user_parser(action_parser=action_parser)
         self.delete_single_user_parser(action_parser=action_parser)
+        self.add_single_user_to_group_parser(action_parser=action_parser)
 
     def create_dummy_parser(self, action_parser):
         """
@@ -149,6 +150,28 @@ class CLI:
             help="Username of the user to delete"
         )
         return parser
+    
+    def add_single_user_to_group_parser(self, action_parser):
+        """
+        Docstring for add_single_user_to_group_parser
+        
+        :param self: Description
+        :param action_parser: Description
+        """
+        parser = action_parser.add_parser(
+            "add-single-user-to-group",
+            help="Add a single user to a group"
+        )
+        parser.add_argument(
+            "username",
+            type=str,
+            help="Username of the user to add to the group"
+        )
+        parser.add_argument(
+            "group_name",
+            type=str,
+            help="Group name of the group the user should be added to"
+        )
 # ------------------------- GROUPS -------------------------
     def setup_groups_parser(self):
         """
@@ -235,6 +258,8 @@ class CLI:
                                                 username=args.username, password=args.password)
             elif args.action == "delete-single-user":
                 self.single_users.delete_single_user(username=args.username)
+            elif args.action == "add-single-user-to-group":
+                self.single_users.add_single_user_to_group(username=args.username, group_name=args.group_name)
         
         elif args.command == "manage-groups":
             if args.action == "show-existing-groups":
