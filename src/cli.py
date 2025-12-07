@@ -119,6 +119,16 @@ class CLI:
             type=str,
             help="Email of the user"
         )
+        parser.add_argument(
+            "username",
+            type=str,
+            help="Username of the user"
+        )
+        parser.add_argument(
+            "password",
+            type=str,
+            help="Password of the user"
+        )
         return parser
     def delete_single_user_parser(self, action_parser):
         """
