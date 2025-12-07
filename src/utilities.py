@@ -79,19 +79,6 @@ class Utilities:
         except subprocess.CalledProcessError as error:
             self.logger.error(f"{logging_error}: {error}")
 
-    def show_existing_users(self):
-        """
-        python -m main manage-users show-existing
-        """
-        try:
-            self.logger.info(f"Showing every existing user")
-            subprocess.run(
-                ["cut", "-d:", "-f1", "/etc/passwd"],
-                check=True
-            )
-        except subprocess.CalledProcessError as error:
-            self.logger.error(f"Error while loading every existing user: {error}")
-
     def show_existing_groups(self):
         """
         python -m main manage-groups show-existing
@@ -104,16 +91,3 @@ class Utilities:
             )
         except subprocess.CalledProcessError as error:
             self.logger.error(f"Error while displaying groups: {error}")
-
-    def find_by_username(self, username):
-        """
-        python -m main manage-users find-user username
-        """
-        try:
-            self.logger.info(f"Searching for user: {username}")
-            subprocess.run(
-                ["grep", username, "/etc/passwd"],
-                check=True
-            )
-        except subprocess.CalledProcessError as error:
-            self.logger.error(f"Error while searching for user: {username}: {error}")

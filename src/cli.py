@@ -31,9 +31,13 @@ class CLI:
                         "name": "find-user",
                         "help": "Find a user by username",
                         "arguments": [
-                            {"name": "username", "type": str,
-                                "help": "Username to search for user"}
+                            {"name": "username", "type": str,"help": "Username to search for user"}
                         ]
+                    },
+                    {
+                        "name": "show-existing-groups",
+                        "help": "Show all groups",
+                        "arguments": []
                     }
                 ]
             }
@@ -74,3 +78,7 @@ class CLI:
                 self.utilities.base_utility(logging_info=f"Searching for user: {args.username}",
                                             command=["grep", args.username, "/etc/passwd"],
                                             logging_error=f"Error while searching for user: {args.username}")
+            case ("utilities", "show-existing-groups"):
+                self.utilities.base_utility(logging_info="Displaying every existing group",
+                                            command=["cat", "/etc/group"],
+                                            logging_error="Error while loading every existing group")
