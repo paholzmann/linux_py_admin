@@ -33,10 +33,12 @@ class CLI:
             "manage-users",
             help="User management"
         )
+
         action_parser = parser.add_subparsers(
             dest="action",
             required=True
         )
+
         create_dummy_parser = action_parser.add_parser(
             "create-dummy-users",
             help="Create dummy users"
@@ -46,10 +48,12 @@ class CLI:
             type=int,
             help="Number of dummy users to create"
         )
+
         show_existing_parser = action_parser.add_parser(
             "show-existing-users",
             help="Show every existing user in the System"
         )
+
         find_user_parser = action_parser.add_parser(
             "find-user",
             help="Find user by username"
@@ -59,6 +63,7 @@ class CLI:
             type=str,
             help="User to find"
         )
+
         create_single_user_parser = action_parser.add_parser(
             "create-single-user",
             help="Create single user"
@@ -88,6 +93,16 @@ class CLI:
             type=str,
             help="Password of the user"
         )
+
+        delete_single_user_parser = action_parser.add_parser(
+            "delte-single-user",
+            help="Delete single user by username"
+        )
+        delete_single_user_parser.add_argument(
+            "username",
+            type=str,
+            help="Username of the user to delete"
+        )
     def run_commands(self):
         """
         Docstring for run_commands
@@ -105,4 +120,5 @@ class CLI:
             elif args.action == "create-single-user":
                 self.single_users.create_single_user(first_name=args.first_name, last_name=args.last_name, email=args.email,
                                                 username=args.username, password=args.password)
-                
+            elif args.action == "delte-single-user":
+                self.single_users.delete_single_user(username=args.username)

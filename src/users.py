@@ -93,3 +93,17 @@ class SingleUsers:
             )
         except subprocess.CalledProcessError as error:
             self.logger.error(f"Error while creating user {username}: {error}")
+
+    def delete_single_user(self, username):
+        """
+        python -m main manage-users delete-single-user username
+        """
+        try:
+            self.logger.warning(f"Deleting user: {username}")
+            subprocess.run(
+                ["deluser", "--remove-home", username],
+                check=True
+            )
+
+        except subprocess.CalledProcessError as error:
+            self.logger.error(f"Error while deleting user {username}: {error}")
