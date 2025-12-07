@@ -1,5 +1,5 @@
 from .data import GenerateUserData, FileHandler
-from .users import Users
+from .users import Users, SingleUsers
 from .logger import Logger
 from .groups import Groups
 from .utilities import Utilities
@@ -17,6 +17,7 @@ class CLI:
         self.generate_user_data = GenerateUserData()
         self.file_handler = FileHandler()
         self.users = Users()
+        self.single_users = SingleUsers()
         self.groups = Groups()
         self.utilities = Utilities()
         self.logger = Logger(name="CLI", log_file="app.log").logger
@@ -58,6 +59,35 @@ class CLI:
             type=str,
             help="User to find"
         )
+        create_single_user_parser = action_parser.add_parser(
+            "create-single-user",
+            help="Create single user"
+        )
+        create_single_user_parser.add_argument(
+            "first-name",
+            type=str,
+            help="First name of the user"
+        )
+        create_single_user_parser.add_argument(
+            "last-name",
+            type=str,
+            help="Last name of the user"
+        )
+        create_single_user_parser.add_argument(
+            "email",
+            type=str,
+            help="Email of the user"
+        )
+        create_single_user_parser.add_argument(
+            "username",
+            type=str,
+            help="Username o the user"
+        )
+        create_single_user_parser.add_argument(
+            "password",
+            type=str,
+            help="Password of the user"
+        )
     def run_commands(self):
         """
         Docstring for run_commands
@@ -72,3 +102,7 @@ class CLI:
                 self.utilities.show_existing_users()
             elif args.action == "find-user":
                 self.utilities.find_by_username(username=args.username)
+            elif args.action == "create-single-user":
+                self.single_users.add_single_user(first_name=args.first_name, last_name=args.last_name, email=args.email,
+                                                username=args.username, password=args.password)
+                

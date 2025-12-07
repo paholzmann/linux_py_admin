@@ -75,7 +75,7 @@ class Utilities:
                 check=True
             )
         except subprocess.CalledProcessError as error:
-            self.logger.warning(f"Error while loading every existing user: {error}")
+            self.logger.error(f"Error while loading every existing user: {error}")
 
     def find_by_username(self, username):
         """
@@ -88,4 +88,4 @@ class Utilities:
                 check=True
             )
         except subprocess.CalledProcessError as error:
-            self.logger.warning(f"Error while searching for user: {username}: {error}")
+            self.logger.error(f"Error while searching for user: {username}: {error}")

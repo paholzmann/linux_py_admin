@@ -63,3 +63,33 @@ class Users:
 
             except subprocess.CalledProcessError as error:
                 print(f"Error while deleting user {username}: {error}")
+
+class SingleUsers:
+    def __init__(self):
+        """
+        Docstring for __init__
+        
+        :param self: Description
+        """
+        self.logger = Logger(name="Single user management", log_file="app.log").logger
+
+    def add_single_user(self, first_name, last_name, email, username, password):
+        """
+        Docstring for add_single_user
+        
+        :param self: Description
+        """
+        try:
+            self.logger.info(f"Creating user: {username}")
+            subprocess.run(
+                ["useradd", "-m", "-c", f"{first_name} {last_name}, {email}", username],
+                check=True
+            )
+            subprocess.run(
+                ["chpasswd"],
+                input=f"{username}:{password}",
+                text=True,
+                check=True
+            )
+        except subprocess.CalledProcessError as error:
+            self.logger.error(f"Error while creating user {username}: {error}")
