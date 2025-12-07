@@ -64,12 +64,12 @@ class CLI:
             help="Create single user"
         )
         create_single_user_parser.add_argument(
-            "first-name",
+            "first_name",
             type=str,
             help="First name of the user"
         )
         create_single_user_parser.add_argument(
-            "last-name",
+            "last_name",
             type=str,
             help="Last name of the user"
         )
