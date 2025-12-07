@@ -67,8 +67,8 @@ class CLI:
         args = self.parser.parse_args()
         match (args.command, getattr(args, "action", None)):
             case ("utilities", "show-existing-users"):
-                self.utilities.base_utility(logging_info=f"Showing every existing user",
-                                            command=["cut", "-d", "-f1", "/etc/passwd"], 
-                                            logging_error=f"Error while loading every existing user: ")
+                self.utilities.base_utility(logging_info="Showing every existing user",
+                                            command=["cut", "-d:", "-f1", "/etc/passwd"], 
+                                            logging_error="Error while loading every existing user")
             case ("utilities", "find-user"):
                 self.utilities.find_by_username(username=args.username)

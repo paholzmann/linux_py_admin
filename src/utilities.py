@@ -77,7 +77,7 @@ class Utilities:
                 check=True
             )
         except subprocess.CalledProcessError as error:
-            self.logger.error(logging_error, error)
+            self.logger.error(f"{logging_error}: {error}")
 
     def show_existing_users(self):
         """
