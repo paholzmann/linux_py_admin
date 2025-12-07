@@ -70,5 +70,5 @@ class CLI:
                 dummy_users = self.utilities.create_dummy_users(n=args.n)
             elif args.action == "show-existing-users":
                 self.utilities.show_existing_users()
-            elif args.action == "fins-user":
+            elif args.action == "find-user":
                 self.utilities.find_by_username(username=args.username)
