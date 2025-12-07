@@ -13,6 +13,8 @@ class Utilities:
         """
         self.logger = Logger(name="Utilities", log_file="app.log").logger
 
+
+
     def create_dummy_users(self, n):
         """
         Funktion ist vollständig.
@@ -63,6 +65,19 @@ class Utilities:
             }
         self.logger.info(f"Created {n} users with data: {list(users[0].keys())}")
         return users
+
+    def base_utility(self, logging_info="", command_list=[], logging_error=""):
+        """
+
+        """
+        try:
+            self.logger.info(logging_info)
+            subprocess.run(
+                command_list,
+                check=True
+            )
+        except subprocess.CalledProcessError as error:
+            self.logger.error(logging_error)
 
     def show_existing_users(self):
         """
