@@ -103,6 +103,6 @@ class CLI:
             elif args.action == "find-user":
                 self.utilities.find_by_username(username=args.username)
             elif args.action == "create-single-user":
-                self.single_users.add_single_user(first_name=args.first_name, last_name=args.last_name, email=args.email,
+                self.single_users.create_single_user(first_name=args.first_name, last_name=args.last_name, email=args.email,
                                                 username=args.username, password=args.password)
                 

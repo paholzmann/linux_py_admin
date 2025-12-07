@@ -73,11 +73,11 @@ class SingleUsers:
         """
         self.logger = Logger(name="Single user management", log_file="app.log").logger
 
-    def add_single_user(self, first_name, last_name, email, username, password):
+    def create_single_user(self, first_name, last_name, email, username, password):
         """
-        Docstring for add_single_user
-        
-        :param self: Description
+        python -m main manage-users create-single-user first_name last_name email username password
+        Log into the debian server:
+        docker exec -it -u username my_debian /bin/bash
         """
         try:
             self.logger.info(f"Creating user: {username}")
