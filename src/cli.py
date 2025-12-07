@@ -71,4 +71,6 @@ class CLI:
                                             command=["cut", "-d:", "-f1", "/etc/passwd"], 
                                             logging_error="Error while loading every existing user")
             case ("utilities", "find-user"):
-                self.utilities.find_by_username(username=args.username)
+                self.utilities.base_utility(logging_info=f"Searching for user: {args.username}",
+                                            command=["grep", args.username, "/etc/passwd"],
+                                            logging_error=f"Error while searching for user: {args.username}")
