@@ -1,7 +1,7 @@
 from .data import GenerateUserData, FileHandler
 from .users import Users, SingleUsers
 from .logger import Logger
-from .groups import Groups, SingleGroups
+from .groups import SingleGroups
 from .utilities import Utilities
 import argparse
 import json
@@ -18,7 +18,6 @@ class CLI:
         self.file_handler = FileHandler()
         self.users = Users()
         self.single_users = SingleUsers()
-        self.groups = Groups()
         self.single_groups = SingleGroups()
         self.utilities = Utilities()
         self.logger = Logger(name="CLI", log_file="app.log").logger
