@@ -77,6 +77,19 @@ class Utilities:
         except subprocess.CalledProcessError as error:
             self.logger.error(f"Error while loading every existing user: {error}")
 
+    def show_existing_groups(self):
+        """
+        python -m main manage-groups show-existing
+        """
+        try:
+            self.logger.info(f"Showing every existing group")
+            subprocess.run(
+                ["cat", "/etc/group"],
+                check=True
+            )
+        except subprocess.CalledProcessError as error:
+            self.logger.error(f"Error while displaying groups: {error}")
+
     def find_by_username(self, username):
         """
         python -m main manage-users find-user username

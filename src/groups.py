@@ -18,17 +18,7 @@ class Groups:
                                     "Customer-Success",
                                     "Finance"]
 
-    def show_existing_groups(self):
-        """
-        python -m main manage-groups show-existing
-        """
-        try:
-            subprocess.run(
-                ["cat", "/etc/group"],
-                check=True
-                )
-        except subprocess.CalledProcessError as error:
-            print(f"Error while displaying groups: {error}")
+
 
     def create_groups(self):
         """
@@ -86,3 +76,28 @@ class Groups:
         """
         
         """
+
+class SingleGroups:
+    def __init__(self):
+        """
+        Docstring for __init__
+        
+        :param self: Description
+        """
+        self.logger = Logger(name="Utilities", log_file="app.log").logger
+    
+    def create_single_group(self, group_name):
+        """
+        Docstring for create_single_group
+        
+        :param self: Description
+        :param group_name: Description
+        """
+        try:
+            self.logger.info(f"Creating group: {group_name}")
+            subprocess.run(
+                ["addgroup", group_name],
+                check=True
+            )
+        except subprocess.CalledProcessError as error:
+            self.logger.error(f"Error while creating group {group_name}: {error}")

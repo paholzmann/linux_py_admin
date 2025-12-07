@@ -24,7 +24,9 @@ class CLI:
         self.parser = argparse.ArgumentParser(description="Main parser")
         self.subparser = self.parser.add_subparsers(dest="command")
         self.setup_users_parser()
+        self.setup_groups_parser()
 
+# ------------------------- USERS -------------------------
     def setup_users_parser(self):
         """
 
@@ -43,7 +45,7 @@ class CLI:
         self.find_user_parser(action_parser=action_parser)
         self.create_single_user_parser(action_parser=action_parser)
         self.delete_single_user_parser(action_parser=action_parser)
-    
+
     def create_dummy_parser(self, action_parser):
         """
         Docstring for create_dummy_parser
@@ -61,7 +63,7 @@ class CLI:
             help="Number of dummy users to create"
         )
         return parser
-    
+
     def show_existing_parser(self, action_parser):
         """
         Docstring for show_existing_parser
@@ -74,7 +76,7 @@ class CLI:
             help="Show every existing user in the System"
         )
         return parser
-    
+
     def find_user_parser(self, action_parser):
         """
         Docstring for find_user_parser
@@ -92,7 +94,7 @@ class CLI:
             help="User to find"
         )
         return parser
-    
+
     def create_single_user_parser(self, action_parser):
         """
         Docstring for create_single_user_parser
@@ -130,6 +132,7 @@ class CLI:
             help="Password of the user"
         )
         return parser
+
     def delete_single_user_parser(self, action_parser):
         """
         Docstring for delete_single_user_parser
@@ -146,6 +149,35 @@ class CLI:
             help="Username of the user to delete"
         )
         return parser
+# ------------------------- GROUPS -------------------------
+    def setup_groups_parser(self):
+        """
+        Docstring for setup_groups_parser
+        
+        :param self: Description
+        """
+        parser = self.subparser.add_parser(
+            "manage-groups",
+            help="Group management"
+        )
+        action_parser = parser.add_subparsers(
+            dest="action",
+            required=True
+        )
+        self.show_existing_groups_parser(action_parser=action_parser)
+    
+    def show_existing_groups_parser(self, action_parser):
+        """
+        Docstring for show_existing_groups_parser
+        
+        :param self: Description
+        """
+        parser = action_parser.add_parser(
+            "show-existing-groups",
+            help="Show existing groups"
+        )
+        return parser
+
     def run_commands(self):
         """
         Docstring for run_commands
@@ -165,3 +197,7 @@ class CLI:
                                                 username=args.username, password=args.password)
             elif args.action == "delete-single-user":
                 self.single_users.delete_single_user(username=args.username)
+        
+        elif args.command == "manage-groups":
+            if args.action == "show-existing-groups":
+                self.utilities.show_existing_groups()
