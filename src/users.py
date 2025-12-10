@@ -8,7 +8,29 @@ class Users:
         
         """
 
-    def add_users(self, filepath):
+    def create_user(self, first_name, last_name, email, username, password):
+        """
+        python -m main manage-users create-single-user first_name last_name email username password
+        Log into the debian server:
+        docker exec -it -u username my_debian /bin/bash
+        """
+        try:
+            self.logger.info(f"Creating user: {username}")
+            subprocess.run(
+                ["useradd", "-m", "-c",
+                    f"{first_name} {last_name}, {email}", username],
+                check=True
+            )
+            subprocess.run(
+                ["chpasswd"],
+                input=f"{username}:{password}",
+                text=True,
+                check=True
+            )
+        except subprocess.CalledProcessError as error:
+            self.logger.error(f"Error while creating user {username}: {error}")
+
+    def add_bulk_users(self, filepath):
         """
         python -m main manage-users add-users --input-path data/generated_data/test/None.csv
         """
@@ -73,26 +95,7 @@ class SingleUsers:
         """
         self.logger = Logger(name="Single user management", log_file="app.log").logger
 
-    def create_single_user(self, first_name, last_name, email, username, password):
-        """
-        python -m main manage-users create-single-user first_name last_name email username password
-        Log into the debian server:
-        docker exec -it -u username my_debian /bin/bash
-        """
-        try:
-            self.logger.info(f"Creating user: {username}")
-            subprocess.run(
-                ["useradd", "-m", "-c", f"{first_name} {last_name}, {email}", username],
-                check=True
-            )
-            subprocess.run(
-                ["chpasswd"],
-                input=f"{username}:{password}",
-                text=True,
-                check=True
-            )
-        except subprocess.CalledProcessError as error:
-            self.logger.error(f"Error while creating user {username}: {error}")
+
 
     def delete_single_user(self, username):
         """

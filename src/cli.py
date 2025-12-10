@@ -1,4 +1,4 @@
-from .users import SingleUsers
+from .users import Users
 from .logger import Logger
 from .utilities import Utilities
 import argparse
@@ -14,6 +14,7 @@ class CLI:
         """
         self.logger = Logger(name="CLI", log_file="app.log").logger
         self.utilities = Utilities()
+        self.users = Users()
         self.parser = argparse.ArgumentParser(description="Main parser")
         self.subparser = self.parser.add_subparsers(dest="command")
 
@@ -110,10 +111,6 @@ class CLI:
                 self.utilities.base_utility(logging_info=f"Searching for group: {args.groupname}",
                                             command=["getent", "group", args.groupname])
             case ("users", "add-user"):
-                self.utilities.base_utility(logging_info=f"Creating user with username: {args.username}",
-                                            command=["useradd", "-m", "-c", f"{args.first_name} {args.last_name}, {args.email}", args.username],
-                                            logging_error=f"Error while adding user: {args.username}")
-                self.utilities.base_utility(logging_info=f"Setting password for user: {args.username}",
-                                            command=["chpasswd"],
-                                            input_data=f"{args.username}:{args.password}",
-                                            logging_error=f"Error while setting password for user: {args.username}")
+                self.users.create_user(first_name=args.first_name, last_name=args.last_name, email=args.email,
+                                    username=args.username, password=args.password)
+                
