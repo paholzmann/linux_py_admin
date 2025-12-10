@@ -18,8 +18,7 @@ class Users:
         try:
             self.logger.info(f"Creating user: {username}")
             subprocess.run(
-                ["useradd", "-m", "-c",
-                    f"{first_name} {last_name}, {email}", username],
+                ["useradd", "-m", "-c", f"{first_name} {last_name}, {email}", username],
                 check=True
             )
             subprocess.run(
