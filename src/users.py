@@ -7,6 +7,7 @@ class Users:
         """
         
         """
+        self.logger = Logger(name="Utilities", log_file="app.log").logger
 
     def create_user(self, first_name, last_name, email, username, password):
         """
