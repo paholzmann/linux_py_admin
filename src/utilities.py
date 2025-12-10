@@ -13,8 +13,6 @@ class Utilities:
         """
         self.logger = Logger(name="Utilities", log_file="app.log").logger
 
-
-
     def create_dummy_users(self, n):
         """
         Funktion ist vollständig.
@@ -68,7 +66,11 @@ class Utilities:
 
     def base_utility(self, logging_info="", command=[], logging_error=""):
         """
-
+        Examples:
+            >>> python -m main utilities show-existing-users
+            >>> python -m main utilities find-user username
+            >>> python -m main utilities show-existing-groups
+            >>> 
         """
         try:
             self.logger.info(logging_info)
@@ -78,16 +80,3 @@ class Utilities:
             )
         except subprocess.CalledProcessError as error:
             self.logger.error(f"{logging_error}: {error}")
-
-    def show_existing_groups(self):
-        """
-        python -m main manage-groups show-existing
-        """
-        try:
-            self.logger.info(f"Showing every existing group")
-            subprocess.run(
-                ["cat", "/etc/group"],
-                check=True
-            )
-        except subprocess.CalledProcessError as error:
-            self.logger.error(f"Error while displaying groups: {error}")

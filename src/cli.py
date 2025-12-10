@@ -31,13 +31,20 @@ class CLI:
                         "name": "find-user",
                         "help": "Find a user by username",
                         "arguments": [
-                            {"name": "username", "type": str,"help": "Username to search for user"}
+                            {"name": "username", "type": str, "help": "Username to search for user"}
                         ]
                     },
                     {
                         "name": "show-existing-groups",
                         "help": "Show all groups",
                         "arguments": []
+                    },
+                    {
+                        "name": "find-group",
+                        "help": "Find a group by groupname",
+                        "arguments": [
+                            {"name": "groupname", "type": str, "help": "Group name to search for group"}
+                        ]
                     }
                 ]
             }
@@ -82,3 +89,6 @@ class CLI:
                 self.utilities.base_utility(logging_info="Displaying every existing group",
                                             command=["cat", "/etc/group"],
                                             logging_error="Error while loading every existing group")
+            case ("utilities", "find-group"):
+                self.utilities.base_utility(logging_info=f"Searching for group: {args.groupname}",
+                                            command=["getent", "group", args.groupname])
