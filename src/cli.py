@@ -70,6 +70,22 @@ class CLI:
                         "arguments": [
                             {"name": "username", "type": str, "help": "Username of user to delete"}
                         ]
+                    },
+                    {
+                        "name": "add-user-to-group",
+                        "help": "Add a user to a group",
+                        "arguments": [
+                            {"name": "username", "type": str, "help": "Username of the user to add to the group"},
+                            {"name": "groupname", "type": str, "help": "Groupname of the group to add the user to"}
+                        ]
+                    },
+                    {
+                        "name": "remove-user-from-group",
+                        "help": "Remove a user from a group",
+                        "arguments": [
+                            {"name": "username", "type": str, "help": "Username of the user to remove from the group"},
+                            {"name": "groupname", "type": str, "help": "Groupname of the group to remove the user from"}
+                        ]
                     }
                 ]
             }
@@ -124,3 +140,11 @@ class CLI:
                 self.utilities.base_utility(logging_warning=f"Deleting user: {args.username}",
                                             command=["deluser", "--remove-home", args.username],
                                             logging_error=f"Error while deleting user: {args.username}")
+            case ("users", "add-user-to-group"):
+                self.utilities.base_utility(logging_info=f"Adding user: {args.username} to group: {args.groupname}",
+                                            command=["usermod", "-aG", args.groupname, args.username],
+                                            logging_error=f"Error while adding user: {args.username} to group: {args.groupname}")
+            case ("users", "remove-user-from-group"):
+                self.utilities.base_utility(logging_warning=f"Removing user: {args.username} from group: {args.groupname}",
+                                            command=["gpasswd", "-d", args.username, args.groupname],
+                                            logging_error=f"Error while removing user: {args.username} from group: {args.groupname}")

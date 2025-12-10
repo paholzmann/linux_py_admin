@@ -95,22 +95,6 @@ class SingleUsers:
         """
         self.logger = Logger(name="Single user management", log_file="app.log").logger
 
-
-
-    def delete_single_user(self, username):
-        """
-        python -m main manage-users delete-single-user username
-        """
-        try:
-            self.logger.warning(f"Deleting user: {username}")
-            subprocess.run(
-                ["deluser", "--remove-home", username],
-                check=True
-            )
-
-        except subprocess.CalledProcessError as error:
-            self.logger.error(f"Error while deleting user {username}: {error}")
-
     def add_single_user_to_group(self, username, group_name):
         """
         Docstring for add_single_user_to_group
