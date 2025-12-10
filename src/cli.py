@@ -63,6 +63,13 @@ class CLI:
                             {"name": "username", "type": str, "help": "Username of user"},
                             {"name": "password", "type": str, "help": "Password of user"}
                         ]
+                    },
+                    {
+                        "name": "delete-user",
+                        "help": "Delete one user",
+                        "arguments": [
+                            {"name": "username", "type": str, "help": "Username of user to delete"}
+                        ]
                     }
                 ]
             }
@@ -113,4 +120,7 @@ class CLI:
             case ("users", "add-user"):
                 self.users.create_user(first_name=args.first_name, last_name=args.last_name, email=args.email,
                                     username=args.username, password=args.password)
-                
+            case ("users", "delete-user"):
+                self.utilities.base_utility(logging_warning=f"Deleting user: {args.username}",
+                                            command=["deluser", "--remove-home", args.username],
+                                            logging_error=f"Error while deleting user: {args.username}")
