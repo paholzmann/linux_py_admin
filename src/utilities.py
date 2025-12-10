@@ -77,7 +77,7 @@ class Utilities:
             subprocess.run(
                 command,
                 input=input_data,
-                text_data=False,
+                text=False,
                 check=True
             )
         except subprocess.CalledProcessError as error:
