@@ -64,7 +64,7 @@ class Utilities:
         self.logger.info(f"Created {n} users with data: {list(users[0].keys())}")
         return users
 
-    def base_utility(self, logging_info="", command=[], logging_error=""):
+    def base_utility(self, logging_info="", command=[], input_data=None, text_data=False, logging_error=""):
         """
         Examples:
             >>> python -m main utilities show-existing-users
@@ -76,6 +76,8 @@ class Utilities:
             self.logger.info(logging_info)
             subprocess.run(
                 command,
+                input=input_data,
+                text_data=False,
                 check=True
             )
         except subprocess.CalledProcessError as error:

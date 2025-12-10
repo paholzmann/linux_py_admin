@@ -47,6 +47,23 @@ class CLI:
                         ]
                     }
                 ]
+            },
+            {
+                "parser": "users",
+                "help": "User functions",
+                "actions": [
+                    {
+                        "name": "add-user",
+                        "help": "Add one user",
+                        "arguments": [
+                            {"name": "first_name", "type": str, "help": "First name of user"},
+                            {"name": "last_name", "type": str, "help": "Last name of user"},
+                            {"name": "email", "type": str, "help": "Email of user"},
+                            {"name": "username", "type": str, "help": "Username of user"},
+                            {"name": "password", "type": str, "help": "Password of user"}
+                        ]
+                    }
+                ]
             }
         ]
 
@@ -92,3 +109,11 @@ class CLI:
             case ("utilities", "find-group"):
                 self.utilities.base_utility(logging_info=f"Searching for group: {args.groupname}",
                                             command=["getent", "group", args.groupname])
+            case ("users", "add-user"):
+                self.utilities.base_utility(logging_info=f"Creating user with username: {args.username}",
+                                            command=["useradd", "-m", "-c", f"{args.first_name} {args.last_name}, {args.email}", args.username],
+                                            logging_error=f"Error while adding user: {args.username}")
+                self.utilities.base_utility(logging_info=f"Setting password for user: {args.username}",
+                                            command=["chpasswd"],
+                                            input_data=f"{args.username}:{args.password}",
+                                            logging_error=f"Error while setting password for user: {args.username}")
