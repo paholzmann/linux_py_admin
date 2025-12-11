@@ -118,7 +118,7 @@ class CLI:
                 dest="action", required=True)
             for action in definition["actions"]:
                 action_parser = actions_parser.add_parser(
-                    action["name"], help=action["help"])
+                    action["name"], help=action.get("help", ""))
                 for argument in action["arguments"]:
                     arg_type = type_mapping.get(argument.get("type", "str"), str)
                     action_parser.add_argument(
