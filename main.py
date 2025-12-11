@@ -1,4 +1,3 @@
-from src.data import GenerateUserData
 from src.cli import CLI
 from src.logger import Logger
 class Main:
@@ -8,7 +7,6 @@ class Main:
         
         :param self: Description
         """
-        self.generate_user_data = GenerateUserData()
 
     def create_user_workflow(self):
         """
