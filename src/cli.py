@@ -116,13 +116,16 @@ class CLI:
                 definition["parser"], help=definition["help"])
             actions_parser = parser.add_subparsers(
                 dest="action", required=True)
+            
             for action in definition["actions"]:
                 action_parser = actions_parser.add_parser(
-                    action["name"], help=action.get("help", ""))
+                    action["name"], help=action["help"])
+                
                 for argument in action["arguments"]:
                     arg_type = type_mapping.get(argument.get("type", "str"), str)
                     action_parser.add_argument(
                         argument["name"],
+                        type=arg_type,
                         help=argument.get("help", "")
                     )
 

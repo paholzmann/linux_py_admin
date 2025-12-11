@@ -68,14 +68,5 @@
                         ]
                     }
                 ]
-            },
-            {
-                "parser": "groups",
-                "help": "Group functions",
-                "actions": [
-                    {
-                        "name": "add-group"
-                    }
-                ]
             }
         ]
