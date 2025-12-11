@@ -88,13 +88,30 @@ class CLI:
                         ]
                     }
                 ]
+            },
+            {
+                "parser": "groups",
+                "help": "Group functions",
+                "actions": [
+                    {
+                        "name": "add-group"
+                    }
+                ]
             }
         ]
 
     def setup_utilities_cli(self):
         """
         """
-        for definition in self.definitions:
+        type_mapping = {
+            "str": str,
+            "int": int,
+            "float": float,
+            "bool": bool
+        }
+        with open("config.json", "r", encoding="utf-8") as file:
+            definitions = json.load(file)
+        for definition in definitions:
             parser = self.subparser.add_parser(
                 definition["parser"], help=definition["help"])
             actions_parser = parser.add_subparsers(
@@ -103,9 +120,9 @@ class CLI:
                 action_parser = actions_parser.add_parser(
                     action["name"], help=action["help"])
                 for argument in action["arguments"]:
+                    arg_type = type_mapping.get(argument.get("type", "str"), str)
                     action_parser.add_argument(
                         argument["name"],
-                        type=argument.get("type", str),
                         help=argument.get("help", "")
                     )
 

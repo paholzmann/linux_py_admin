@@ -10,27 +10,6 @@ class Users:
         """
         self.logger = Logger(name="Utilities", log_file="app.log").logger
 
-    def create_user(self, first_name, last_name, email, username, password):
-        """
-        python -m main manage-users create-single-user first_name last_name email username password
-        Log into the debian server:
-        docker exec -it -u username my_debian /bin/bash
-        """
-        try:
-            self.logger.info(f"Creating user: {username}")
-            subprocess.run(
-                ["useradd", "-m", "-c", f"{first_name} {last_name}, {email}", username],
-                check=True
-            )
-            subprocess.run(
-                ["chpasswd"],
-                input=f"{username}:{password}",
-                text=True,
-                check=True
-            )
-        except subprocess.CalledProcessError as error:
-            self.logger.error(f"Error while creating user {username}: {error}")
-
     def create_dummy_users(self, n):
         """
         Funktion ist vollständig.
