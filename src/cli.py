@@ -72,7 +72,7 @@ class CLI:
                 self.utilities.base_utility(logging_info=f"Searching for group: {args.groupname}",
                                             command=["getent", "group", args.groupname],
                                             logging_error=f"Error while searching for group: {args.groupname}")
-            case ("users", "add-user"):
+            case ("users", "create-user"):
                 self.utilities.base_utility(logging_info=f"Creating user: {args.username}",
                                             command=["useradd", "-m", "-c", f"{args.first_name} {args.last_name}, {args.email}", args.username])
                 self.utilities.base_utility(logging_info=f"Setting password for user: {args.username}",
@@ -92,3 +92,7 @@ class CLI:
                 self.utilities.base_utility(logging_warning=f"Removing user: {args.username} from group: {args.groupname}",
                                             command=["gpasswd", "-d", args.username, args.groupname],
                                             logging_error=f"Error while removing user: {args.username} from group: {args.groupname}")
+            case ("groups", "create-group"):
+                self.utilities.base_utility(logging_info=f"Creating group: {args.groupname}",
+                                            command=["addgroup", args.groupname],
+                                            logging_error=f"Error while creating group: {args.groupname}")

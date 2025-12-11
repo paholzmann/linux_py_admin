@@ -34,8 +34,8 @@
                 "help": "User functions",
                 "actions": [
                     {
-                        "name": "add-user",
-                        "help": "Add one user",
+                        "name": "create-user",
+                        "help": "Create one user",
                         "arguments": [
                             {"name": "first_name", "type": "str", "help": "First name of user"},
                             {"name": "last_name", "type": "str", "help": "Last name of user"},
@@ -65,6 +65,19 @@
                         "arguments": [
                             {"name": "username", "type": "str", "help": "Username of the user to remove from the group"},
                             {"name": "groupname", "type": "str", "help": "Groupname of the group to remove the user from"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "parser": "groups",
+                "help": "Group functions",
+                "actions": [
+                    {
+                        "name": "create-group",
+                        "help": "Create a group",
+                        "arguments": [
+                            {"name": "gropname", "type": "str", "help": "Groupname of the group to create"}
                         ]
                     }
                 ]
