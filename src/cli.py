@@ -96,3 +96,7 @@ class CLI:
                 self.utilities.base_utility(logging_info=f"Creating group: {args.groupname}",
                                             command=["addgroup", args.groupname],
                                             logging_error=f"Error while creating group: {args.groupname}")
+            case ("groups", "delete-group"):
+                self.utilities.base_utility(logging_warning=f"Deleting group: {args.groupname}",
+                                            command=["groupdel", args.groupname],
+                                            logging_error=f"Error while deleting group: {args.groupname}")
