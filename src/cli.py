@@ -27,7 +27,7 @@ class CLI:
             "float": float,
             "bool": bool
         }
-        with open("config.json", "r", encoding="utf-8") as file:
+        with open("config/cli_config.json", "r", encoding="utf-8") as file:
             definitions = json.load(file)
         for definition in definitions:
             parser = self.subparser.add_parser(
@@ -72,6 +72,8 @@ class CLI:
                 self.utilities.base_utility(logging_info=f"Searching for group: {args.groupname}",
                                             command=["getent", "group", args.groupname],
                                             logging_error=f"Error while searching for group: {args.groupname}")
+            case ("utilities", "generate-users"):
+                self.users.create_dummy_users(n=args.n, filename=args.filename)
             case ("users", "create-user"):
                 self.utilities.base_utility(logging_info=f"Creating user: {args.username}",
                                             command=["useradd", "-m", "-c", f"{args.first_name} {args.last_name}, {args.email}", args.username])

@@ -1,0 +1,100 @@
+[
+            {
+                "parser": "utilities",
+                "help": "Utility functions",
+                "actions": [
+                    {
+                        "name": "show-existing-users",
+                        "help": "Show all users",
+                        "arguments": []
+                    },
+                    {
+                        "name": "find-user",
+                        "help": "Find a user by username",
+                        "arguments": [
+                            {"name": "username", "type":  "str", "help": "Username to search for user"}
+                        ]
+                    },
+                    {
+                        "name": "show-existing-groups",
+                        "help": "Show all groups",
+                        "arguments": []
+                    },
+                    {
+                        "name": "find-group",
+                        "help": "Find a group by groupname",
+                        "arguments": [
+                            {"name": "groupname", "type": "str", "help": "Group name to search for group"}
+                        ]
+                    },
+                    {
+                        "name": "generate-users",
+                        "help": "Generate a specific amount of users",
+                        "arguments": [
+                            {"name": "n", "type": "int", "help": "Number of users to generate"},
+                            {"name": "filename", "type": "str", "help": "Filename of the CSV file to save the users in"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "parser": "users",
+                "help": "User functions",
+                "actions": [
+                    {
+                        "name": "create-user",
+                        "help": "Create one user",
+                        "arguments": [
+                            {"name": "first_name", "type": "str", "help": "First name of user"},
+                            {"name": "last_name", "type": "str", "help": "Last name of user"},
+                            {"name": "email", "type": "str", "help": "Email of user"},
+                            {"name": "username", "type": "str", "help": "Username of user"},
+                            {"name": "password", "type": "str", "help": "Password of user"}
+                        ]
+                    },
+                    {
+                        "name": "delete-user",
+                        "help": "Delete one user",
+                        "arguments": [
+                            {"name": "username", "type": "str", "help": "Username of user to delete"}
+                        ]
+                    },
+                    {
+                        "name": "add-user-to-group",
+                        "help": "Add a user to a group",
+                        "arguments": [
+                            {"name": "username", "type": "str", "help": "Username of the user to add to the group"},
+                            {"name": "groupname", "type": "str", "help": "Groupname of the group to add the user to"}
+                        ]
+                    },
+                    {
+                        "name": "remove-user-from-group",
+                        "help": "Remove a user from a group",
+                        "arguments": [
+                            {"name": "username", "type": "str", "help": "Username of the user to remove from the group"},
+                            {"name": "groupname", "type": "str", "help": "Groupname of the group to remove the user from"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "parser": "groups",
+                "help": "Group functions",
+                "actions": [
+                    {
+                        "name": "create-group",
+                        "help": "Create a group",
+                        "arguments": [
+                            {"name": "groupname", "type": "str", "help": "Groupname of the group to create"}
+                        ]
+                    },
+                    {
+                        "name": "delete-group",
+                        "help": "Delete a group",
+                        "arguments": [
+                            {"name": "groupname", "type": "str", "help": "Groupname of the group to delete"}
+                        ]
+                    }
+                ]
+            }
+        ]

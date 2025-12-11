@@ -1,65 +1,47 @@
 import subprocess
+import json
 import pandas as pd
 import random
 from .logger import Logger
-
+from .data_handler import FileHandler
 class Users:
     def __init__(self):
         """
         
         """
         self.logger = Logger(name="Utilities", log_file="app.log").logger
+        self.file_handler = FileHandler()
 
-    def create_dummy_users(self, n):
+    def create_dummy_users(self, n, filename):
         """
         Funktion ist vollständig.
 
         python -m main manage-users create-dummy-users n
         """
-        first_names = [
-            "Emma", "Liam", "Olivia", "Noah", "Ava",
-            "Elijah", "Sophia", "Lucas", "Isabella", "Mason",
-            "Mia", "Logan", "Charlotte", "Ethan", "Amelia",
-            "James", "Harper", "Benjamin", "Evelyn", "Alexander"
-        ]
-        last_names = [
-            "Smith", "Johnson", "Williams", "Brown", "Jones",
-            "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
-            "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
-            "Thomas", "Taylor", "Moore", "Jackson", "Martin"
-        ]
-        departments = [
-            "Engineering",
-            "Product",
-            "Design",
-            "Quality Assurance",
-            "Operations",
-            "Human Resources",
-            "Marketing",
-            "Sales",
-            "Customer Success",
-            "Finance"
-        ]
         users = {}
+        with open("config/data_config.json", "r", encoding="utf-8") as file:
+            config_data = json.load(file)
         for i in range(n):
-            first_name = random.choice(first_names)
-            last_name = random.choice(last_names)
-            username = f"{first_name.lower()}.{last_name.lower()}"
+            first_name = random.choice(config_data["first_names"])
+            last_name = random.choice(config_data["last_names"])
+            username = f"{first_name.lower()}.{last_name.lower()}.{i}"
             email = f"{username}@example.com"
-            department = random.choice(departments)
-
-            def password(length=5): return "".join(
-                random.choice("0123456789") for _ in range(length))
+            department = random.choice(config_data["departments"])
+            groups = config_data["groups"][department]
+            seniority_level = random.choice(config_data["seniority_level"])
+            def password(length=5): return "".join(random.choice("0123456789") for _ in range(length))
             users[i] = {
                 "first_name": first_name,
                 "last_name": last_name,
                 "username": username,
                 "email": email,
                 "department": department,
+                "groups": groups,
+                "seniority_level": seniority_level,
                 "password": password()
             }
-        self.logger.info(
-            f"Created {n} users with data: {list(users[0].keys())}")
+        self.logger.info(f"Generating {n} users")
+        self.file_handler.convert_to_file(data=users, folder="custom_data", filename=filename)
         return users
 
     def add_bulk_users(self, filepath):

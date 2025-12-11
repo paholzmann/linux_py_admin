@@ -1,0 +1,28 @@
+{
+    "first_names":
+                ["Emma", "Liam", "Olivia", "Noah", "Ava",
+                "Elijah", "Sophia", "Lucas", "Isabella", "Mason",
+                "Mia", "Logan", "Charlotte", "Ethan", "Amelia",
+                "James", "Harper", "Benjamin", "Evelyn", "Alexander"],
+    "last_names":
+                ["Smith", "Johnson", "Williams", "Brown", "Jones",
+                "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+                "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
+                "Thomas", "Taylor", "Moore", "Jackson", "Martin"],
+    "departments": 
+                ["Engineering", "Product", "Design", "Quality Assurance", "Operations",
+                "Human Resources", "Marketing", "Sales", "Customer Success", "Finance"],
+    "groups": {
+        "Engineering": ["dev", "git", "docker", "sudo"],
+        "Product": ["product", "jira", "confluence"],
+        "Design": ["design", "figma", "xd"],
+        "Quality Assurance": ["qa", "test", "jenkins"],
+        "Operations": ["ops", "docker", "k8s", "sudo"],
+        "Human Resources": ["hr", "payroll"],
+        "Marketing": ["marketing", "analytics"],
+        "Sales": ["sales", "crm"],
+        "Customer Success": ["support", "crm"],
+        "Finance": ["finance", "payroll", "accounting"]
+    },
+    "seniority_level": ["Junior", "Mid-Level", "Senior"]
+}

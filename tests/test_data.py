@@ -1,5 +1,5 @@
 import pytest
-from src.data import GenerateUserData, FileHandler
+from src.data_handler import GenerateUserData, FileHandler
 
 """
 Unit tests

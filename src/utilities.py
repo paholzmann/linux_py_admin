@@ -34,3 +34,19 @@ class Utilities:
             )
         except subprocess.CalledProcessError as error:
             self.logger.error(f"{logging_error}: {error}")
+
+    def file_utility(self, logging_info="", folder="", filename="", logging_warning="", logging_error=""):
+        """
+        Docstring for file_utility
+        
+        :param self: Description
+        """
+        
+
+    def data_utilitiy(self):
+        """
+        Docstring for data_utilitiy
+        
+        :param self: Description
+        """
+        
