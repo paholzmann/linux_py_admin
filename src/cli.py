@@ -132,10 +132,16 @@ class CLI:
                                             logging_error="Error while loading every existing group")
             case ("utilities", "find-group"):
                 self.utilities.base_utility(logging_info=f"Searching for group: {args.groupname}",
-                                            command=["getent", "group", args.groupname])
+                                            command=["getent", "group", args.groupname],
+                                            logging_error=f"Error while searching for group: {args.groupname}")
             case ("users", "add-user"):
-                self.users.create_user(first_name=args.first_name, last_name=args.last_name, email=args.email,
-                                    username=args.username, password=args.password)
+                self.utilities.base_utility(logging_info=f"Creating user: {args.username}",
+                                            command=["useradd", "-m", "-c", f"{args.first_name} {args.last_name}, {args.email}", args.username])
+                self.utilities.base_utility(logging_info=f"Setting password for user: {args.username}",
+                                            command=["chpasswd"],
+                                            input_data=f"{args.username}:{args.password}",
+                                            text_data=True,
+                                            logging_error=f"Error while setting up password for user: {args.username}")
             case ("users", "delete-user"):
                 self.utilities.base_utility(logging_warning=f"Deleting user: {args.username}",
                                             command=["deluser", "--remove-home", args.username],
