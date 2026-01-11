@@ -102,3 +102,12 @@ class CLI:
                 self.utilities.base_utility(logging_warning=f"Deleting group: {args.groupname}",
                                             command=["groupdel", args.groupname],
                                             logging_error=f"Error while deleting group: {args.groupname}")
+            case ("users", "create-bulk-users"):
+                self.utilities.file_utility(logging_info=f"Creating users from file: {args.filepath}",
+                                            command=["useradd", "-m", "-c", "{first_name} {args.last_name}, {args.email}", "username"],
+                                            logging_error=f"Error while creating users from file: {args.filepath}")
+                self.utilities.file_utility(logging_info=f"Setting passwords for users from file: {args.filepath}",
+                                            command=["chpasswd"],
+                                            input_data=True,
+                                            text_data=True,
+                                            logging_error=f"Error while setting passwords for users from file: {args.filepath}")

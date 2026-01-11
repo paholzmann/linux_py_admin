@@ -74,6 +74,13 @@
                             {"name": "username", "type": "str", "help": "Username of the user to remove from the group"},
                             {"name": "groupname", "type": "str", "help": "Groupname of the group to remove the user from"}
                         ]
+                    },
+                    {
+                        "name": "create-bulk-users",
+                        "help": "Create many users from file",
+                        "arguments": [
+                            {"name": "filepath", "type": "str", "help": "Filepath to create users from"}
+                        ]
                     }
                 ]
             },
